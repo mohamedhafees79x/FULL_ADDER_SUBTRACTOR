@@ -37,8 +37,10 @@ Diff = A ⊕ B ⊕ Bin
 Borrow out = A'Bin + A'B + BBin
 
 **Truthtable**
-![WhatsApp Image 2025-11-19 at 13 10 42_408d328e](https://github.com/user-attachments/assets/2ee633e6-010a-4f0d-9c16-810cb30ec686)
-
+Full Adder
+<img width="429" height="395" alt="388825036-4d112be1-6902-42f6-a80f-d6ffa1814c34" src="https://github.com/user-attachments/assets/f93a50f1-079d-442c-9287-302a1d3f1270" />
+Full Subtractor
+<img width="438" height="393" alt="388825191-affd2a74-295b-48dc-b7c5-3e2de75db7d3" src="https://github.com/user-attachments/assets/31988baf-dd28-420d-b87d-2d69672bcaac" />
 
 
 **Procedure**
@@ -46,10 +48,33 @@ Borrow out = A'Bin + A'B + BBin
 Write the detailed procedure here
 
 **Program:**
+Full Adder
 ```
+module exp4(df,bo,a,b,bin);
+output df;
+output bo;
+input a;
+input b;
+input bin;
+wire w1,w2,w3;
+assign w1=a^b;
+assign w2=(~a&b);
+assign w3=(~w1&bin);
+assign df=w1^bin;
+assign bo=w2|w3;
+endmodule
 ```
-
+Full Subtractor
 ```
+module full_subtractor(diff, borrow, a, b, bin);
+output diff;
+output borrow;
+input a;
+input b;
+input bin;
+assign diff = a ^ b ^ bin;
+assign borrow = (~a & b) | (~(a ^ b) & bin);
+endmodule
 ```
 
 **RTL Schematic**
